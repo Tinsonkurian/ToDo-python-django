@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+  delete
+{% endblock title %}
+
+{% block body %}
+<div class="conatiner">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>Are you done {{task.name}}?</p>
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a href="/"class="btn btn-dark">No</a>
+    </form>
+</div>
+
+{% endblock body %}
