@@ -35,13 +35,25 @@ def delete(request,id):
 
     return render(request, 'delete.html', dict_task)
 
-def update(request,id):
-    dict_form = {
-        'form':TodoForm()
+def edit(request, id):
+    dict_task = {
+        'task' : Todo.objects.get(id=id)
     }
+    print(dict_task)
+    return render(request, 'update.html', dict_task)
+
+def update(request,id):
+    
     if request.method == 'POST':
-        form = TodoForm(request.POST)
-        if form.is_valid():
-            form.save()
-    return render(request,'update.html', dict_form)
+        name = request.POST['name']
+        priority = request.POST['priority']
+        date= request.POST['date']
+
+        todo = Todo.objects.get(id=id)
+        todo.name = name
+        todo.priority = priority
+        todo.date = date
+
+        todo.save()
+        return redirect('/')
 
