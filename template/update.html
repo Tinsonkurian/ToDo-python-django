@@ -4,11 +4,27 @@
 {% endblock title %}
 {% block body %}
   
-<form action="" method="POST">
-  {% csrf_token %}
-    <h2>Update</h2>
-    {{form.as_p}}
-    
-    <button type="submit" class="btn btn-primary">Update</button>
-</form>
+<h3>Update</h3>
+<div class="card shadow p-3 mb-5 bg-body rounded" >
+  <div class="card-body">
+    <form method="POST" action="{%url 'update' task.id%}">
+      {% csrf_token %}
+      <div class="form-floating mb-3">
+        <input type="text" name="name" value="{{task.name}}" class="form-control" id="floatingInput" placeholder="Enter task">
+        <label for="floatingInput">Task Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" name="priority" value="{{task.priority}}" class="form-control" id="floatingInput" placeholder="Enter Priority">
+        <label for="floatingInput">Priority</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="date" name="date" value="{{task.date}}" class="form-control" id="floatingInput" placeholder="Enter Date">
+        <label for="floatingInput">Date</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+
+
+  </div>
+</div>
 {% endblock body %}
